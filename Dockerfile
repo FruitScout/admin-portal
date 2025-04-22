@@ -3,7 +3,6 @@ FROM python:3.11-slim
 WORKDIR /app
 COPY . .
 
-RUN pip install -r requirements.txt
+RUN pip install --no-cache-dir -r requirements.txt
 
-CMD ["python", "app.py"]
-
+CMD ["gunicorn", "--bind", "0.0.0.0:8080", "main:app"]
